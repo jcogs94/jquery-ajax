@@ -51,14 +51,14 @@ const fetchFilm = async () => {
 
     const listItems = [
         `<h2>Star Wars<br>Episode ${filmData.episode_id} - ${filmData.title} (${filmYear})</h2>`,
-        `<p><b>Director:</b> ${filmData.director}</p>`,
-        `<p><b>Producer(s):</b> ${filmData.producer}</p>`,
-        `<p><b>Opening Crawl:</b> ${filmData.opening_crawl}</p>`,
+        `<p><b>Director:</b><br> ${filmData.director}</p>`,
+        `<p><b>Producer(s):</b><br> ${filmData.producer}</p>`,
+        `<p><b>Opening Crawl:</b><br> ${filmData.opening_crawl}</p>`,
     ]
 
     $('#loading-film').hide()
     listItems.forEach( (item) => {
-        $('#swapi-film1').append(item)
+        $('#film-info').append(item)
     })
 }
 

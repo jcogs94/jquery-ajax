@@ -41,7 +41,23 @@ body {
 }
 
 #swapi-film1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     > h2 {
         padding: 20px;
+    }
+}
+
+#film-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    max-width: calc(100vw - 30%);
+
+    > * {
+        text-align: center;
     }
 }

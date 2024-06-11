@@ -35,11 +35,9 @@ const fetchPeople = async () => {
         peopleNames.push(`<li>${person.name}</li>`)
     })
     
-    $('#loading-people').hide()
-    $('#swapi-people').append('<h2>Characters in Swapi Database</h2>')
-    $('#swapi-people').append('<ul>Characters in Swapi Database</ul>')
+    $('#loading-characters').hide()
     peopleNames.forEach( (name) => {
-        $('#swapi-people > ul').append(name)
+        $('#swapi-characters > ul').append(name)
     })
 }
 

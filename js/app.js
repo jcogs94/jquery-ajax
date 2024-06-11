@@ -13,9 +13,13 @@ const fetchAPIData = async (url) => {
 
     while (crawler) {
         const foundData = await fetchData(crawlURL)
-        foundData.results.forEach( (entry) => {
-            data.push(entry)
-        })
+        if (foundData.results) {
+            foundData.results.forEach( (entry) => {
+                data.push(entry)
+            })
+        } else {
+            data = foundData
+        }
 
         if (foundData.next) {
             crawlURL = foundData.next
@@ -41,10 +45,26 @@ const fetchPeople = async () => {
     })
 }
 
+const fetchFilm = async () => {
+    const filmData = await fetchAPIData('https://swapi.dev/api/films/1/')
+    const filmYear = filmData.release_date.slice(0, 4)
+
+    const listItems = [
+        `<h2>Star Wars<br>Episode ${filmData.episode_id} - ${filmData.title} (${filmYear})</h2>`,
+        `<p><b>Director:</b> ${filmData.director}</p>`,
+        `<p><b>Producer(s):</b> ${filmData.producer}</p>`,
+        `<p><b>Opening Crawl:</b> ${filmData.opening_crawl}</p>`,
+    ]
+
+    $('#loading-film').hide()
+    listItems.forEach( (item) => {
+        $('#swapi-film1').append(item)
+    })
+}
+
 const fetchAllData = async () => {
-    await fetchPeople('https://swapi.dev/api/people/')
+    await fetchPeople()
+    await fetchFilm()
 }
 
 fetchAllData()
-
-// $('#swapi-people').html(result.results)
